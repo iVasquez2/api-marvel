@@ -1,0 +1,5 @@
+marvel:
+    api:
+        public-key: 64adbca0a6e389435ad8c606c03e915a
+        private-key: e2e266d1eded05f106e8e966ea7efcd108d6370a
+        base-url: https://gateway.marvel.com/v1/public
