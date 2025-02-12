@@ -3,3 +3,24 @@ marvel:
         public-key: 64adbca0a6e389435ad8c606c03e915a
         private-key: e2e266d1eded05f106e8e966ea7efcd108d6370a
         base-url: https://gateway.marvel.com/v1/public
+
+spring:
+    security:
+        basic:
+            enabled: false
+    datasource:
+        url: jdbc:h2:mem:marveldb
+        driverClassName: org.h2.Driver
+        username: sa
+        password: 8956
+    h2:
+        console:
+            enabled: true
+            path: /h2-ui
+            settings:
+                web-allow-others: true 
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+            ddl-auto: update
+        show-sql: true  
