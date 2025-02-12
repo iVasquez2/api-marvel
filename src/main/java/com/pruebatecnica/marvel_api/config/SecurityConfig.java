@@ -28,7 +28,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(requests -> requests
-                        .requestMatchers("/marvel/**","/h2-ui/**").permitAll()  // Permite el acceso a la consola H2 sin autenticación
+                        .requestMatchers("/marvel/**","/h2-ui/**","/consultas/**").permitAll()  // Permite el acceso a la consola H2 sin autenticación
                         .requestMatchers("/**").authenticated())
                 .csrf(csrf -> csrf.disable())  // Desactiva CSRF (necesario para la consola H2)
                 .headers(headers -> headers.frameOptions().disable()); 
