@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pruebatecnica.marvel_api.dto.marvelResponse;
 import com.pruebatecnica.marvel_api.service.marvelConsultarService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -23,6 +24,11 @@ public class marvelController {
     @GetMapping("/characters")
     public marvelResponse getCharacters() {
         return marvelconsultarservice.getCharacters();
+    }
+
+    @GetMapping("/characters/{characterId}/series")
+    public marvelResponse getCharacterSeries(@PathVariable String characterId) {
+        return marvelconsultarservice.getCharacterSeries(characterId);
     }
     
     

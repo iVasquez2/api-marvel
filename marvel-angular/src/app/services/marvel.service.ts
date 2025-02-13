@@ -17,4 +17,8 @@ export class MarvelService {
 
     return this.http.get<any>(this.apiUrl, { headers });
   }
+
+  getCharacterSeries(characterId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${characterId}/series`);
+  }
 }

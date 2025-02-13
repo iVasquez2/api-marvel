@@ -28,5 +28,18 @@
     <img [src]="selectedCharacter?.thumbnail?.path + '.' + selectedCharacter?.thumbnail?.extension" 
          alt="{{ selectedCharacter?.name }}" class="img-fluid">
     <p>{{ selectedCharacter?.description || 'Sin descripción disponible' }}</p>
+   <!--Cargar del componente de carrusel-->
+   <div class="carousel-container" *ngIf="characterSeries.length > 0">
+    <carousel class="carousel">
+      <slide *ngFor="let series of characterSeries">
+        <img [src]="series.thumbnail?.path + '.' + series.thumbnail?.extension" class="d-block w-100" alt="{{ series.title }}">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ series.title }}</h5>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+  
+  <p *ngIf="characterSeries.length === 0" class="text-center mt-3">No hay series disponibles.</p>
   </div>
 </ng-template>

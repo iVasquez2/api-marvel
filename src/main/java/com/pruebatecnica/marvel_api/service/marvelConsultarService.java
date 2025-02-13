@@ -64,4 +64,13 @@ public class marvelConsultarService {
 
         return response;
     }
+    
+    public marvelResponse getCharacterSeries(String characterId) {
+        String timestamp = String.valueOf(Instant.now().getEpochSecond());
+        String hash = marvelautentificacionservice.generarHash(timestamp);
+        String publicKey = marvelautentificacionservice.getPublicKey();
+
+        return marvelclient.getCharacterSeries(characterId, timestamp, publicKey, hash);
+    }
+
 }

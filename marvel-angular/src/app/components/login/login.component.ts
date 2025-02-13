@@ -20,6 +20,11 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin(): void {
+    if (!this.username || !this.password) { // ✅ Validación previa
+      this.loginError = true;
+      return;
+    }
+  
     if (this.authService.login(this.username, this.password)) {
       this.router.navigate(['/characters']);
     } else {

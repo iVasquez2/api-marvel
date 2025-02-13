@@ -23,4 +23,12 @@ public interface marvelClient {
     String hash
    );
 
+   @GetMapping("/characters/{characterId}/series")
+    marvelResponse getCharacterSeries(
+        @RequestParam("characterId") String characterId,
+        @RequestParam("ts") String timestamp,
+        @RequestParam("apikey") String apiKey,
+        @RequestParam("hash") String hash
+    );
+
 }
