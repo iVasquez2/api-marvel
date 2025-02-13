@@ -1,13 +1,19 @@
 <h2>Lista de Personajes de Marvel</h2>
 
+<!-- Verifica si hay personajes disponibles -->
 <div *ngIf="characters.length > 0; else loading">
+  <!-- Itera sobre cada personaje en la lista de personajes -->
   <div *ngFor="let character of characters" class="character-card">
+    <!-- Muestra la imagen del personaje -->
     <img [src]="character.thumbnail?.path + '.' + character.thumbnail?.extension" alt="{{ character.name }}">
+    <!-- Muestra el nombre del personaje -->
     <h3>{{ character.name }}</h3>
+    <!-- Muestra la descripción del personaje o un mensaje predeterminado si no hay descripción -->
     <p>{{ character.description || 'Sin descripción' }}</p>
   </div>
 </div>
 
+<!-- Mensaje de carga mientras se obtienen los personajes -->
 <ng-template #loading>
   <p>Cargando personajes...</p>
 </ng-template>

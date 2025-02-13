@@ -25,4 +25,11 @@ class marvelData {
 class marvelCharacter{
     private String name;
     private String description;
+    private marvelThumbnail thumbnail;
+}
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+class marvelThumbnail {
+    private String path;           
+    private String extension; 
 }
