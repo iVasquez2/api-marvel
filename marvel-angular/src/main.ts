@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsMod
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -17,7 +18,8 @@ bootstrapApplication(AppComponent, {
       FormsModule,  // Aquí importamos FormsModule
       CarouselModule.forRoot(),
       ModalModule.forRoot(),
-      NgbModule
+      NgbModule,
+      NgbModal
     )
   ]
 }).catch(err => console.error(err));

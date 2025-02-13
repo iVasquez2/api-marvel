@@ -1,0 +1,46 @@
+.character-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 20px; /* Espacio entre tarjetas */
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .character-card {
+    text-align: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .character-card:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+  }
+  
+  .character-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .character-card h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .character-card h3:hover {
+    text-decoration: underline;
+  }
+  
+  .character-card p {
+    font-size: 14px;
+    color: #555;
+  }
+  

@@ -1,14 +1,14 @@
 <h2>Lista de Personajes de Marvel</h2>
 
 <!-- Verifica si hay personajes disponibles -->
-<div *ngIf="characters.length > 0; else loading">
+<div *ngIf="characters.length > 0; else loading" class="character-container">
   <!-- Itera sobre cada personaje en la lista de personajes -->
   <div *ngFor="let character of characters" class="character-card">
     <!-- Muestra la imagen del personaje -->
     <img [src]="character.thumbnail?.path + '.' + character.thumbnail?.extension" alt="{{ character.name }}">
-    <!-- Muestra el nombre del personaje -->
-    <h3>{{ character.name }}</h3>
-    <!-- Muestra la descripción del personaje o un mensaje predeterminado si no hay descripción -->
+    <!-- Muestra el nombre del personaje (clic para abrir modal) -->
+    <h3 (click)="openModal(character)">{{ character.name }}</h3>
+    <!-- Muestra la descripción o mensaje por defecto -->
     <p>{{ character.description || 'Sin descripción' }}</p>
   </div>
 </div>
@@ -16,4 +16,17 @@
 <!-- Mensaje de carga mientras se obtienen los personajes -->
 <ng-template #loading>
   <p>Cargando personajes...</p>
+</ng-template>
+
+<!-- Modal -->
+<ng-template #characterDetailModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ selectedCharacter?.name }}</h4>
+    <button type="button" class="btn-close" aria-label="Cerrar" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <img [src]="selectedCharacter?.thumbnail?.path + '.' + selectedCharacter?.thumbnail?.extension" 
+         alt="{{ selectedCharacter?.name }}" class="img-fluid">
+    <p>{{ selectedCharacter?.description || 'Sin descripción disponible' }}</p>
+  </div>
 </ng-template>

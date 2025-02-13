@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MarvelService } from '../../services/marvel.service';
 import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
+  styleUrls: ['./characters.component.css'],
   standalone: true,
   imports: [CommonModule]
 })
 export class CharactersComponent implements OnInit {
   characters: any[] = []; // Inicializamos como array vacío para evitar errores
+  selectedCharacter: any = null; 
 
-  constructor(private marvelService: MarvelService) {}
+  @ViewChild('characterDetailModal') characterDetailModal!: TemplateRef<any>
+  constructor(private marvelService: MarvelService,private modalService: NgbModal) {}
 
   ngOnInit() {
     this.marvelService.getCharacters().subscribe({
@@ -25,5 +29,14 @@ export class CharactersComponent implements OnInit {
         this.characters = []; // Evita que el componente falle si hay un error
       }
     });
+  }
+  openModal(character: any) {
+    this.selectedCharacter = character;
+    if (this.characterDetailModal) {
+      console.log("Abriendo modal de detalle de personaje:", character);
+      this.modalService.open(this.characterDetailModal, { size: 'lg', centered: true });
+    } else {
+      console.error("Error: Modal template no encontrado.");
+    }
   }
 }
