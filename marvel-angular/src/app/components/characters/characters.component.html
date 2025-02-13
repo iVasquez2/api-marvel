@@ -1,0 +1,13 @@
+<h2>Lista de Personajes de Marvel</h2>
+
+<div *ngIf="characters.length > 0; else loading">
+  <div *ngFor="let character of characters" class="character-card">
+    <img [src]="character.thumbnail?.path + '.' + character.thumbnail?.extension" alt="{{ character.name }}">
+    <h3>{{ character.name }}</h3>
+    <p>{{ character.description || 'Sin descripción' }}</p>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Cargando personajes...</p>
+</ng-template>

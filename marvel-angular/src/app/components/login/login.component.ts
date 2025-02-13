@@ -21,7 +21,7 @@ export class LoginComponent {
 
   onLogin(): void {
     if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/characters']);
     } else {
       this.loginError = true;
     }

@@ -4,12 +4,15 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CharactersComponent } from './components/characters/characters.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: '**', component: NotFoundComponent }   
+    { path: 'characters', component: CharactersComponent },   
+    { path: '**', component: NotFoundComponent }
+    
 ];
 
 @NgModule({
