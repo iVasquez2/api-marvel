@@ -28,14 +28,15 @@ public class marvelConsultarService {
     @Autowired
     private ConsultaRepository consultaRepository;
 
-    public marvelResponse getCharacters(){
+    public marvelResponse getCharacters(int limit, int offset){
         marvelResponse response = null;
         try {
             String timestamp = String.valueOf(Instant.now().getEpochSecond());
             String hash = marvelautentificacionservice.generarHash(timestamp);
             String publicKey = marvelautentificacionservice.getPublicKey();
             String url = "https://gateway.marvel.com/v1/public/characters?ts=" + timestamp + 
-            "&apikey=" + publicKey + "&hash=" + hash;
+            "&apikey=" + publicKey + "&hash=" + hash+ 
+            "&limit=" + limit + "&offset=" + offset;
             System.out.println("URL generada: " + url);
             //Consulta API
             response = marvelclient.getCharacters(timestamp, publicKey, hash);

@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -19,15 +18,14 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-        @Bean
+    @Bean
     public UserDetailsService userDetailsService(){
         UserDetails user = User.withDefaultPasswordEncoder() // Usamos 'withDefaultPasswordEncoder' para pruebas
         .username("admin")  // Nombre de usuario
         .password("8956")  // Contraseña sin cifrado (para pruebas)
         .roles("ADMIN")  // Rol asignado al usuario
         .build();
-return new InMemoryUserDetailsManager(user);
-
+        return new InMemoryUserDetailsManager(user);
     }
 
     @Bean
@@ -35,12 +33,17 @@ return new InMemoryUserDetailsManager(user);
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource())) //  Usar configuración de CORS
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/marvel/**").authenticated() // Protege API de Marvel
+                .requestMatchers("/marvel/characters/*/series/**","/h2-ui/**").permitAll() // Permite acceso sin autenticación
+                .requestMatchers("/marvel/**").authenticated() // Protege otras rutas de Marvel
                 .anyRequest().permitAll()
             )
-            .httpBasic(); // ✅ Habilita autenticación Basic Auth
+            .httpBasic()
+            .and()
+            .csrf().ignoringRequestMatchers("/h2-ui/**")  // Deshabilita CSRF para la consola H2
+            .and()
+            .headers().frameOptions().sameOrigin();  // Necesario para permitir iframe de la consola H2
+        return http.build(); //  Habilita autenticación Basic Auth
 
-        return http.build();
     }
 
     // 🔹 Método que define la configuración de CORS

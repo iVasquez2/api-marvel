@@ -6,6 +6,7 @@ package com.pruebatecnica.marvel_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pruebatecnica.marvel_api.dto.marvelResponse;
@@ -22,8 +23,9 @@ public class marvelController {
     private marvelConsultarService marvelconsultarservice;
 
     @GetMapping("/characters")
-    public marvelResponse getCharacters() {
-        return marvelconsultarservice.getCharacters();
+    public marvelResponse getCharacters(@RequestParam(defaultValue = "21")int limit, 
+    @RequestParam(defaultValue = "0")int offset) {
+        return marvelconsultarservice.getCharacters(limit, offset);
     }
 
     @GetMapping("/characters/{characterId}/series")

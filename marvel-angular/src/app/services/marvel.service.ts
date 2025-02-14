@@ -10,12 +10,12 @@ export class MarvelService {
 
   constructor(private http: HttpClient) {}
 
-  getCharacters(): Observable<any> {
+  getCharacters(limit: number = 21, offset: number = 0): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa('admin:8956') // 🔹 Codifica usuario y contraseña en Base64
     });
 
-    return this.http.get<any>(this.apiUrl, { headers });
+    return this.http.get<any>(`${this.apiUrl}?limit=${limit}&offset=${offset}`, { headers });
   }
 
   getCharacterSeries(characterId: string): Observable<any> {

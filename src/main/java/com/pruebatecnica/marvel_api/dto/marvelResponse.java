@@ -23,6 +23,7 @@ class marvelData {
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 class marvelCharacter{
+    private String id;
     private String name;
     private String description;
     private marvelThumbnail thumbnail;

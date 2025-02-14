@@ -12,7 +12,12 @@
     <p>{{ character.description || 'Sin descripción' }}</p>
   </div>
 </div>
-
+<!-- Controles de paginación -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+  <span>Página {{ currentPage }} de {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>
 <!-- Mensaje de carga mientras se obtienen los personajes -->
 <ng-template #loading>
   <p>Cargando personajes...</p>
